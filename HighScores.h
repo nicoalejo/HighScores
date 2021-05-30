@@ -23,11 +23,11 @@ public:
 	////Add multiple scores
 	void AddScore(multimap<int, string> addscores);
 	////Delete all elements
-	//void RemoveScore();
+	void RemoveScore();
 	////Delete element in x position
-	//void RemoveScore(int pos);
+	void RemoveScore(int pos);
 	////Delete all elements associated to that name
-	//void RemoveScore(string name);
+	void RemoveScore(string name);
 	////Get score in x position
 	//multimap<string, int> GetScore(int pos);
 	////Get scores in various positions

@@ -27,22 +27,36 @@ void HighScores::AddScore(multimap<int, string> addscores)
 	}	
 }
 
-//void HighScores::RemoveScore()
-//{
-//	scores.clear();
-//}
-//
-//void HighScores::RemoveScore(int pos)
-//{
-//	multimap <string, int>::iterator it_delete;
-//	advance(it_delete, pos);
-//	scores.erase(it_delete);
-//}
-//
-//void HighScores::RemoveScore(string name)
-//{
-//	scores.erase(name);
-//}
+void HighScores::RemoveScore()
+{
+	scores.clear();
+}
+
+void HighScores::RemoveScore(int pos)
+{
+	if (scores.size() == 0 || scores.size() < pos) return;
+
+	multimap <int, string>::iterator it_delete = scores.begin();;
+	advance(it_delete, pos-1);
+	scores.erase(it_delete);
+}
+
+void HighScores::RemoveScore(string name)
+{
+	multimap <int, string>::iterator it_delete;
+	for (it_delete = scores.begin(); it_delete != scores.end();)
+	{
+		if (it_delete->second == name) {
+			auto it_aux = it_delete;
+			it_aux++;
+			scores.erase(it_delete);	
+			it_delete = it_aux;
+		}
+		else {
+			it_delete++;
+		}
+	}
+}
 
 //multimap<string, int> HighScores::GetScore(int pos)
 //{
