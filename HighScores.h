@@ -13,7 +13,9 @@ class HighScores
 {
 private:
 	multimap<int, string, greater<int>> scores;
+	
 public:
+	typedef multimap <int, string> temp;
 	//Empty Constructor 
 	HighScores();
 	//Constructor recieving a multimap with scores
@@ -29,9 +31,9 @@ public:
 	////Delete all elements associated to that name
 	void RemoveScore(string name);
 	////Get score in x position
-	//multimap<string, int> GetScore(int pos);
+	multimap<int, string> GetScore(int pos);
 	////Get scores in various positions
-	//multimap<string, int> GetScore(int pos[]);
+	multimap<int, temp> GetScore(int *pos, int count);
 	////Recieves multimap reference and insert data there
 	//void GetScore(int pos[], multimap<string, int>& scoreReturn);
 	////Get all the scores from the same name

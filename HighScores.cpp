@@ -3,6 +3,7 @@
 #include <map>
 
 //user <algoritm> y <map>
+typedef multimap <int, string> temp;
 
 HighScores::HighScores()
 {
@@ -58,27 +59,33 @@ void HighScores::RemoveScore(string name)
 	}
 }
 
-//multimap<string, int> HighScores::GetScore(int pos)
-//{
-//	multimap <string, int>::iterator it_delete;
-//	it_delete = scores.begin();
-//	advance(it_delete, pos);	
-//	return { make_pair(it_delete->first, it_delete->second) };
-//}
-//
-//multimap<string, int> HighScores::GetScore(int pos[])
-//{
-//	multimap <string, int>::iterator it_delete;
-//	multimap <string, int> scoreReturn;
-//	int sizePos = *(&pos + 1) - pos;
-//	for (size_t i = 0; i < sizePos; i++)
-//	{
-//		it_delete = scores.begin();
-//		advance(it_delete, pos[i]);
-//		scoreReturn.insert(make_pair(it_delete->first, it_delete->second));
-//	}		
-//	return scoreReturn;
-//}
+multimap<int, string> HighScores::GetScore(int pos)
+{
+	multimap<int, string> getscores;
+	if (scores.size() == 0 || scores.size() < pos) return getscores;
+
+	multimap <int, string>::iterator it_get;
+	it_get = scores.begin();
+	advance(it_get, pos-1);	
+	getscores.insert(make_pair(it_get->first, it_get->second));
+	return getscores;
+}
+
+multimap<int, temp> HighScores::GetScore(int *pos, int sizePos)
+{
+	multimap <int, string>::iterator it_get;
+	multimap <int, temp> scoreReturn;
+	for (size_t i = 0; i < sizePos; i++)
+	{
+		it_get = scores.begin();
+		advance(it_get, pos[i]-1);
+		multimap <int, string> test; 
+		test.insert(make_pair(it_get->first, it_get->second));
+		scoreReturn.insert(make_pair(pos[i], test));
+		test.clear();
+	}		
+	return scoreReturn;
+}
 //
 //void HighScores::GetScore(int pos[], multimap <string, int>& scoreReturn)
 //{
