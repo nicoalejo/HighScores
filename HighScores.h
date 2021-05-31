@@ -31,17 +31,23 @@ public:
 	////Delete all elements associated to that name
 	void RemoveScore(string name);
 	////Get score in x position
-	multimap<int, string> GetScore(int pos);
+	multimap<int, temp> GetScore(int pos);
 	////Get scores in various positions
 	multimap<int, temp> GetScore(int *pos, int count);
-	////Recieves multimap reference and insert data there
-	//void GetScore(int pos[], multimap<string, int>& scoreReturn);
+	//Recieves multimap reference and insert data there
+	void GetScore(int* pos, multimap<int,  string, greater<int>>& scoreReturn, int sizePos);
 	////Get all the scores from the same name
-	//multimap<string, int> GetScore(string name);
-	////Get all the scores from the same name using a referenced multimap
-	//void GetScore(string name, multimap<string, int>& getscores);
+	multimap<int, pair<int, string>> GetScore(string name);
+	//Get all the scores from the same name using a referenced multimap
+	void GetScore(string name, multimap<int, multimap<int, string, greater<int>>>& getscores);
 	//Print top 10 Scores
 	void PrintScores();
+	//Different Print Forms
+	void PrintScores(multimap<int, string> score);
+	void PrintScores(multimap<int, temp> score);
+	void PrintScores(multimap<int, string, greater<int>> score);
+	void PrintScores(multimap<int, pair<int, string>> score);
+	void PrintScores(multimap<int, multimap<int, string, greater<int>>> score);
 
 };
 
